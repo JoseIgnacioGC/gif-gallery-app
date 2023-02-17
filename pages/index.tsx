@@ -1,30 +1,33 @@
-import styles from '../styles/Home.module.css'
-import Head from 'next/head'
+import HeadTitle from '../frontend/components/elements/HeadTitle'
 import GifGallery from '../frontend/components/gifs/GifGallery'
-import { getAllGifs, GifsProps } from '../frontend/services/gifs/getAllGifs'
-import SearchBar from '../frontend/components/elements/SearchBar'
-import WebLogo from '../frontend/components/elements/WebLogo'
+import NavBar from '../frontend/components/nav-bar/NavBar'
+import { getAllGifs } from '../frontend/services/gifs/getAllGifs'
+import { GifProps } from '../frontend/services/gifs/gifApi'
 
 // import { Inter } from '@next/font/google'
 // const inter = Inter({ subsets: ['latin'] })
 
-const Home = ({ gifArr = [] }: GifsProps): JSX.Element => {
+type GifPageProps = { gifsWithProps: GifProps[] }
+const Home = ({ gifsWithProps = [] }: GifPageProps): JSX.Element => {
   return (
     <>
-      <Head>
-        <title>Create Next App</title>
-      </Head>
-      <main className={styles.main}>
-        <WebLogo />
-        <span>GifWeb</span>
-        <SearchBar placeholder='search...' />
-        <GifGallery baseHref='/gif' gifArr={gifArr} />
+      <HeadTitle title='Create Next App' />
+      <main>
+        <NavBar />
+        <GifGallery
+          firstImagePriority={true}
+          gifsWithProps={gifsWithProps}
+          searchQuery={'trends'}
+        />
       </main>
     </>
   )
 }
 
-const getServerSideProps = getAllGifs
-export { getServerSideProps }
+type Props = { props: Record<string, unknown> }
+const getServerSideProps = async (): Promise<Props> => {
+  const gifsWithProps = await getAllGifs()
+  return { props: { gifsWithProps } }
+}
 
-export default Home
+export { Home as default, getServerSideProps }

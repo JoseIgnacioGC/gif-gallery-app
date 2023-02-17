@@ -1,26 +1,48 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { GifsProps } from '../../services/gifs/getAllGifs'
+import { useEffect, useRef } from 'react'
+import useGifs from '../../hooks/useGifs'
+import useNearScreen from '../../hooks/useNearScreen'
+import { GifProps } from '../../services/gifs/gifApi'
 
-type Props = GifsProps & {
-  baseHref: string
+type Props = {
+  gifsWithProps: GifProps[]
+  firstImagePriority?: boolean
+  searchQuery: string
 }
 
-const GifGallery = ({ gifArr = [], baseHref }: Props): JSX.Element => {
+const GifGallery = ({
+  gifsWithProps = [],
+  firstImagePriority = false,
+  searchQuery
+}: Props): JSX.Element => {
+  const { gifs, getMoreGifs, isLoading } = useGifs(searchQuery, gifsWithProps)
+  const lastImageGalleryItem = useRef<HTMLDivElement>(null)
+  const { isNearScreen } = useNearScreen<HTMLDivElement>({
+    externalRef: isLoading ? null : lastImageGalleryItem
+  })
+
+  useEffect(() => {
+    if (isNearScreen) getMoreGifs()
+  }, [isNearScreen, getMoreGifs])
+
   return (
-    <>
-      {gifArr.map(({ webpUrl, url, height, title, width, id }) => (
-        <Link key={id} href={`${baseHref}/${id}`} >
-          <Image
-            src={webpUrl ?? url}
-            alt={title}
-            width={Number(width)}
-            height={Number(height)}
-          />
-        </Link>
-      )
+    <div>
+      {gifs.map(
+        ({ webpUrl, url, height, title, width, id }, index) => (
+          <Link key={index} href={`/gif/${id}`}>
+            <Image
+              src={webpUrl ?? url}
+              alt={title}
+              width={Number(width)}
+              height={Number(height)}
+              priority={index === 0 && firstImagePriority}
+            />
+          </Link>
+        )
       )}
-    </>
+      <div ref={lastImageGalleryItem} />
+    </div>
   )
 }
 
