@@ -1,4 +1,4 @@
-import GifImage from '../../frontend/components/gifs/GifById'
+import GifImage from '../../frontend/components/gifs/GifImage'
 import { getGifById } from '../../frontend/services/gifs/getGifById'
 import { GifProps } from '../../frontend/services/gifs/gifApi'
 import NavBar from '../../frontend/components/nav-bar/NavBar'
@@ -15,8 +15,8 @@ const GifPage = ({ gifProps, gifsWithProps }: GifPageProps): JSX.Element => {
       <NavBar />
       <main>
         <GifImage priority={true} {...gifProps} />
-        <button>*copy link*</button>
-        <button>*download*</button>
+        <button aria-label='Copy gif link'>*copy link*</button>
+        <button aria-label='Download gif'>*download*</button>
       </main>
       <section>
         <p>Similar to this...</p>

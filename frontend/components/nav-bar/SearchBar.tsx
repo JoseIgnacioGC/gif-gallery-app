@@ -6,8 +6,8 @@ const SearchBar = ({ placeholder }: Props): JSX.Element => {
   const searchBar = useField({ type: 'text' })
   return (
     <>
-      <input {...searchBar} placeholder={placeholder} />
-      <button>*lupa*</button>
+      <input placeholder={placeholder} {...searchBar} />
+      <button aria-label='Search gifs' >*lupa*</button>
     </>
   )
 }

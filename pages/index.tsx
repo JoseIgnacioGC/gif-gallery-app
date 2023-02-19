@@ -8,12 +8,13 @@ import { GifProps } from '../frontend/services/gifs/gifApi'
 // const inter = Inter({ subsets: ['latin'] })
 
 type GifPageProps = { gifsWithProps: GifProps[] }
-const Home = ({ gifsWithProps = [] }: GifPageProps): JSX.Element => {
+const Home = ({ gifsWithProps }: GifPageProps): JSX.Element => {
   return (
     <>
       <HeadTitle title='Create Next App' />
       <main>
         <NavBar />
+        <p>trends...</p>
         <GifGallery
           firstImagePriority={true}
           gifsWithProps={gifsWithProps}
@@ -26,7 +27,8 @@ const Home = ({ gifsWithProps = [] }: GifPageProps): JSX.Element => {
 
 type Props = { props: Record<string, unknown> }
 const getServerSideProps = async (): Promise<Props> => {
-  const gifsWithProps = await getAllGifs()
+  const { gifs, error } = await getAllGifs()
+  const gifsWithProps = error ?? gifs
   return { props: { gifsWithProps } }
 }
 

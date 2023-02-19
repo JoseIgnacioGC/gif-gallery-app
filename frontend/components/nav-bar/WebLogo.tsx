@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const WebLogo = (): JSX.Element => (
-  <Link href={'/'}>
+  <Link aria-label='Go to home page' href={'/'}>
     <span>G</span>
   </Link>
 )

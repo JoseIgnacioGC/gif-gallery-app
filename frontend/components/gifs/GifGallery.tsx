@@ -16,8 +16,8 @@ const GifGallery = ({
   firstImagePriority = false,
   searchQuery
 }: Props): JSX.Element => {
-  const { gifs, getMoreGifs, isLoading } = useGifs(searchQuery, gifsWithProps)
   const lastImageGalleryItem = useRef<HTMLDivElement>(null)
+  const { gifs, getMoreGifs, isLoading } = useGifs(searchQuery, gifsWithProps)
   const { isNearScreen } = useNearScreen<HTMLDivElement>({
     externalRef: isLoading ? null : lastImageGalleryItem
   })
