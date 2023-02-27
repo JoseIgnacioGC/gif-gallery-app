@@ -11,7 +11,7 @@ type GifPageProps = { gifProps: GifProps, gifsWithProps: GifProps[] }
 const GifPage = ({ gifProps, gifsWithProps }: GifPageProps): JSX.Element => {
   return (
     <>
-      <HeadTitle title={gifProps.title} />
+      <HeadTitle title={gifProps.title} withSuffix={true} />
       <NavBar />
       <main>
         <GifImage priority={true} {...gifProps} />

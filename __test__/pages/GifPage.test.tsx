@@ -1,8 +1,12 @@
 import '../../__mocks__/intersectionObserver'
+import '../../__mocks__/useRouter'
 import { render, screen } from '@testing-library/react'
 import GifPage from '../../pages/gif/[gifId]'
 import expectNavbar from '../utils/expectNavbar'
 import gifProps from '../utils/gifProps'
+
+import * as router from 'next/router'
+jest.spyOn(router, 'useRouter')
 
 const fakeProps = {
   gifProps,

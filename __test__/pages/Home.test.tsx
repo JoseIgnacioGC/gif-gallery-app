@@ -1,5 +1,5 @@
 import '../../__mocks__/intersectionObserver'
-import '@testing-library/jest-dom/extend-expect'
+import '../../__mocks__/useRouter'
 import { render, screen } from '@testing-library/react'
 import Home from '../../pages'
 import expectNavbar from '../utils/expectNavbar'

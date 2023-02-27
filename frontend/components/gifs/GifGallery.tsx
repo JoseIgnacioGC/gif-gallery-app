@@ -1,9 +1,8 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import useGifs from '../../hooks/useGifs'
 import useNearScreen from '../../hooks/useNearScreen'
 import { GifProps } from '../../services/gifs/gifApi'
+import Gif from './Gif'
 
 type Props = {
   gifsWithProps: GifProps[]
@@ -28,19 +27,13 @@ const GifGallery = ({
 
   return (
     <div>
-      {gifs.map(
-        ({ webpUrl, url, height, title, width, id }, index) => (
-          <Link key={index} href={`/gif/${id}`}>
-            <Image
-              src={webpUrl ?? url}
-              alt={title}
-              width={Number(width)}
-              height={Number(height)}
-              priority={index === 0 && firstImagePriority}
-            />
-          </Link>
-        )
-      )}
+      {gifs.map((gifProps, index) => (
+        <Gif
+          key={index}
+          {...gifProps}
+          isPriority={index === 0 && firstImagePriority}
+        />
+      ))}
       <div ref={lastImageGalleryItem} />
     </div>
   )

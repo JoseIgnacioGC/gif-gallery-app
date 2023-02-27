@@ -17,7 +17,8 @@
   "rules": {
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "react/react-in-jsx-scope": "off",
-    "indent": ["error", 2],
+    "indent": ["error", 2, {"SwitchCase": 1}],
+    "@typescript-eslint/indent": "off",
     "max-len": ["error", { "code": 80, "ignoreStrings": true, "ignoreComments": true }]
     // "no-console": "warn"
   }

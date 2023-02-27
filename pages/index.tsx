@@ -11,7 +11,7 @@ type GifPageProps = { gifsWithProps: GifProps[] }
 const Home = ({ gifsWithProps }: GifPageProps): JSX.Element => {
   return (
     <>
-      <HeadTitle title='Create Next App' />
+      <HeadTitle title='Gif Web' />
       <main>
         <NavBar />
         <p>trends...</p>

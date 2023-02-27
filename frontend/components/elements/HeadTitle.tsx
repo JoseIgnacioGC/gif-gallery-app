@@ -1,10 +1,11 @@
 import Head from 'next/head'
 
-type Props = { title: string }
+const TITLE_SUFFIX = ' - Gif Web'
 
-const HeadTitle = ({ title }: Props): JSX.Element => (
+type Props = { title: string, withSuffix?: boolean }
+const HeadTitle = ({ title, withSuffix = false }: Props): JSX.Element => (
   <Head>
-    <title>{title}</title>
+    <title>{title}{withSuffix ? TITLE_SUFFIX : ''}</title>
   </Head>
 )
 
