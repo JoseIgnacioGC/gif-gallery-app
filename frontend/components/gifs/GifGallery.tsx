@@ -26,7 +26,7 @@ const GifGallery = ({
   }, [isNearScreen, getMoreGifs])
 
   return (
-    <div>
+    <>
       {gifs.map((gifProps, index) => (
         <Gif
           key={index}
@@ -35,7 +35,7 @@ const GifGallery = ({
         />
       ))}
       <div ref={lastImageGalleryItem} />
-    </div>
+    </>
   )
 }
 

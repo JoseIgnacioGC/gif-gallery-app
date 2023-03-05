@@ -1,20 +1,22 @@
 import { useRouter } from 'next/router'
 import { KeyboardEvent, useCallback } from 'react'
+import { useSessionStorage } from 'react-use-storage'
 import useField from '../../hooks/useField'
-import { replaceSpecialCharacters } from '../../utils/escapeUrl'
+import { removeHyphens, replaceSpecialCharacters } from '../../utils/searchQueryUtils'
 
 type Props = { placeholder?: string, initialSearchValue?: string }
 
 const SearchBar = ({ placeholder }: Props): JSX.Element => {
+  const [searchQuery, setSearchQuery] = useSessionStorage('searchQuery', '')
+  const [searchBar] = useField({ type: 'search', initialValue: searchQuery })
   const router = useRouter()
-  const searchQuery = router?.query?.searchQuery
-  const searchQueryStr = typeof searchQuery === 'string' ? searchQuery.replace(/-/g, ' ') : ''
-  const [searchBar] = useField({ type: 'search', initialValue: searchQueryStr })
 
   const routerPush = useCallback((): void => {
-    const searchQuery = replaceSpecialCharacters(searchBar.value)
-    searchQuery !== '' && router.push(`/search/${searchQuery}`)
-  }, [router, searchBar.value])
+    const withoutSpecialCharacters = replaceSpecialCharacters(searchBar.value)
+    if (withoutSpecialCharacters === '') return undefined
+    setSearchQuery(removeHyphens(withoutSpecialCharacters))
+    void router.push(`/search/${withoutSpecialCharacters}`)
+  }, [router, searchBar.value, setSearchQuery])
 
   const handleSearchByKey = useCallback(
     (e: KeyboardEvent): void => {

@@ -14,7 +14,7 @@ const Gif = ({
   height,
   isPriority
 }: Props): JSX.Element => (
-  <Link href={`/gif/${id}`}>
+  <Link href={`/gif/${id}`} >
     <Image
       src={webpUrl ?? url}
       alt={title}

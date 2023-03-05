@@ -1,3 +1,4 @@
+import { validateSearchQuery } from '../../utils/searchQueryUtils'
 import { giphy, GifProps } from './gifApi'
 
 type SearchOptions = { offset?: number }
@@ -12,7 +13,7 @@ const getGifsBySearch = async (
 ): Promise<GifProps[]> => {
   try {
     const res = await giphy.search({
-      q: searchQuery,
+      q: validateSearchQuery(searchQuery),
       limit: GIFS_LIMIT,
       offset,
       rating: MAX_RATING

@@ -1,10 +1,12 @@
+import { GetServerSidePropsContext } from 'next'
+import { toString } from '../../utils/primitiveValidators'
 import { giphy, GifProps } from './gifApi'
 
-type Query = { query: { gifId: string } }
-
-const getGifById = async ({ query }: Query): Promise<GifProps> => {
+const getGifById = async ({
+  query
+}: GetServerSidePropsContext): Promise<GifProps> => {
   try {
-    const { gifId } = query
+    const gifId = toString(query.gifId)
     const res = await giphy.id(gifId)
     const { data } = res
     const { title, id } = data[0]
