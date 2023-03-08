@@ -28,11 +28,11 @@ const Home = ({ gifsWithProps }: HomePageProps): JSX.Element => {
     <>
       <HeadTitle title='Gif Web' />
       <NavBar />
-      <main>
-        <p>trends...</p>
+      <main className='dark:bg-zinc-500 px-3'>
         <GifGallery
-          firstImagePriority={true}
+          firstImagePriority
           gifsWithProps={gifsWithProps}
+          galleryTitle='trends...'
           searchQuery={'trends'}
         />
       </main>

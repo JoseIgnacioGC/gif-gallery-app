@@ -23,11 +23,6 @@ const getAllGifs = async (): Promise<GetAllGifs> => {
       const webpUrl = webp ?? null
       return { title, id, webpUrl, url, width, height }
     })
-    .filter(({ id }, index, arr) =>
-      arr.every(
-        ({ id: mapId }, mapIndex) => mapIndex === index || id !== mapId
-      )
-    )
   return { gifs, error: null }
 }
 

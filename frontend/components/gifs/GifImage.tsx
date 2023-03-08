@@ -12,7 +12,7 @@ const GifImage = ({
   priority = false
 }: Props): JSX.Element => {
   return (
-    <>
+    <div className='flex justify-center'>
       <Image
         src={webpUrl ?? url}
         alt={title}
@@ -20,7 +20,7 @@ const GifImage = ({
         height={Number(height)}
         priority={priority}
       />
-    </>
+    </div>
   )
 }
 

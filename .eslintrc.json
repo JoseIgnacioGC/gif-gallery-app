@@ -11,7 +11,11 @@
   "rules": {
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "react/react-in-jsx-scope": "off",
-    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "indent": [
+      "error",
+      2,
+      { "SwitchCase": 1, "ignoredNodes": ["ConditionalExpression"] }
+    ],
     "@typescript-eslint/indent": "off",
     "max-len": [
       "error",

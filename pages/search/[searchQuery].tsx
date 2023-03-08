@@ -33,15 +33,15 @@ const SearchPage = ({ gifsWithProps = [] }: SearchPageProps): JSX.Element => {
 
   return (
     <>
-      <HeadTitle title={searchQueryWithoutHyphens} withSuffix={true} />
-      <NavBar />
+      <HeadTitle title={searchQueryWithoutHyphens} withSuffix />
+      <NavBar isSmall />
       <main>
-        <section>
-          <p>gifs related to {`"${searchQueryWithoutHyphens}"`}</p>
+        <section className='dark:bg-zinc-500 px-3'>
           <GifGallery
-            firstImagePriority={true}
+            firstImagePriority
             gifsWithProps={gifsWithProps}
-            searchQuery={'trends'}
+            galleryTitle={`gifs related to "${searchQueryWithoutHyphens}"`}
+            searchQuery={searchQueryWithoutHyphens}
           />
         </section>
       </main>

@@ -13,16 +13,19 @@ const Gif = ({
   width,
   height,
   isPriority
-}: Props): JSX.Element => (
-  <Link href={`/gif/${id}`} >
-    <Image
-      src={webpUrl ?? url}
-      alt={title}
-      width={Number(width)}
-      height={Number(height)}
-      priority={isPriority}
-    />
-  </Link>
-)
+}: Props): JSX.Element => {
+  return (
+    <Link href={`/gif/${id}`}>
+      <Image
+        src={webpUrl ?? url}
+        alt={title}
+        width={Number(width)}
+        height={Number(height)}
+        priority={isPriority}
+        className='bg-steel-teal'
+      />
+    </Link>
+  )
+}
 
 export default memo(Gif, ({ id: prevId }, { id: nextId }) => prevId === nextId)
