@@ -1,4 +1,4 @@
-import { validateSearchQuery } from '../../utils/searchQueryUtils'
+import { validateSearchQuery } from '../../utils/handleSearchQuery'
 import { giphy, GifProps } from './gifApi'
 
 type SearchOptions = { offset?: number }

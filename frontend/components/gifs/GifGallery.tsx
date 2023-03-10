@@ -30,7 +30,7 @@ const GifGallery = ({
 
   return (
     <>
-      <p className='text-black dark:text-slate-100 font-semibold text-xl py-2'>{galleryTitle}</p>
+      <p className='text-black dark:text-slate-200 font-semibold text-xl py-2'>{galleryTitle}</p>
       <Masonry
         breakpointCols={2}
         className='flex gap-3'

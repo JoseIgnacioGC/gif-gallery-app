@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext } from 'next'
-import { toString } from '../../utils/primitiveValidators'
+import { toString } from '../../utils/handlePrimitiveValidators'
 import { giphy, GifProps } from './gifApi'
 
 const getGifById = async ({

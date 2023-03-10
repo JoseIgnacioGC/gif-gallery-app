@@ -1,4 +1,5 @@
-import { ChangeEvent, HTMLInputTypeAttribute, useState } from 'react'
+import { useRouter } from 'next/router'
+import { ChangeEvent, HTMLInputTypeAttribute, useState, useEffect } from 'react'
 
 type UseFieldParameters = {
   type: HTMLInputTypeAttribute
@@ -17,8 +18,13 @@ const useField = ({
   initialValue = '',
   validator = () => ''
 }: UseFieldParameters): UseFieldValues => {
-  const [value, setValue] = useState(initialValue)
+  const [value, setValue] = useState('')
   const [validatorMsg, setValidatorMsg] = useState('')
+  const dynamicRouter = useRouter().asPath
+
+  useEffect(() => {
+    setValue(initialValue)
+  }, [dynamicRouter, initialValue])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setValue(e.target.value)

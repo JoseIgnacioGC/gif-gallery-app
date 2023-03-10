@@ -4,13 +4,15 @@ import GifGallery from '../../frontend/components/gifs/GifGallery'
 import NavBar from '../../frontend/components/nav-bar/NavBar'
 import { getGifsBySearch } from '../../frontend/services/gifs/getGifsBySearch'
 import { GifProps } from '../../frontend/services/gifs/gifApi'
-import { removeHyphens } from '../../frontend/utils/searchQueryUtils'
+import { removeHyphens } from '../../frontend/utils/handleSearchQuery'
 import { GetServerSidePropsContext } from 'next'
 import useRedirectToCorrectUrl from '../../frontend/hooks/useRedirectToCorrectUrl'
 
-type SearchPageProps = { gifsWithProps: GifProps[] }
+type SearchPageProps = {
+  gifsWithProps: GifProps[]
+}
 type Props = {
-  props: Record<string, unknown>
+  props: SearchPageProps | {}
   redirect?: { permanent: boolean, destination: string }
 }
 
@@ -23,7 +25,9 @@ const getServerSideProps = async ({
   return { props: { gifsWithProps } }
 }
 
-const SearchPage = ({ gifsWithProps = [] }: SearchPageProps): JSX.Element => {
+const SearchPage = ({
+  gifsWithProps = []
+}: SearchPageProps): JSX.Element => {
   const router = useRouter()
   const { searchQuery } = router.query
   const validSearchQuery = typeof searchQuery === 'string' ? searchQuery : ''

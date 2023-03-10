@@ -5,16 +5,16 @@ import useField from '../../hooks/useField'
 import {
   removeHyphens,
   replaceSpecialCharacters
-} from '../../utils/searchQueryUtils'
+} from '../../utils/handleSearchQuery'
 import { MdSearch } from 'react-icons/md'
+import SearchSuggestions from './SearchSuggestions'
 
 type Props = {
   placeholder?: string
   initialSearchValue?: string
-  scrollInTop: boolean
 }
 
-const SearchBar = ({ placeholder, scrollInTop }: Props): JSX.Element => {
+const SearchBar = ({ placeholder }: Props): JSX.Element => {
   const [searchQuery, setSearchQuery] = useSessionStorage('searchQuery', '')
   const [searchBar] = useField({ type: 'search', initialValue: searchQuery })
   const router = useRouter()
@@ -26,7 +26,7 @@ const SearchBar = ({ placeholder, scrollInTop }: Props): JSX.Element => {
     void router.push(`/search/${withoutSpecialCharacters}`)
   }, [router, searchBar.value, setSearchQuery])
 
-  const handleSearchByKey = useCallback(
+  const handleSearchByEnter = useCallback(
     (e: KeyboardEvent): void => {
       e.key === 'Enter' && routerPush()
     },
@@ -38,13 +38,16 @@ const SearchBar = ({ placeholder, scrollInTop }: Props): JSX.Element => {
   }, [routerPush])
 
   return (
-    <div className='flex justify-center items-center min-w-min'>
-      <div className='flex justify-center items-center bg-white dark:bg-slate-700   rounded-full py-0 px-3'>
+    <div className='relative w-fit'>
+      <div className='flex justify-center items-center w-fit bg-white dark:bg-slate-700 rounded-full mx-auto py-0 px-3'>
         <input
-          className='bg-transparent placeholder:text-gray-400 dark:placeholder:text-slate-200 focus-visible:outline-none w-60'
-          onKeyUp={handleSearchByKey}
+          className='bg-transparent placeholder:text-gray-400 dark:text-slate-200 dark:placeholder:text-slate-400 focus-visible:outline-none w-60'
+          onKeyUp={handleSearchByEnter}
           placeholder={placeholder}
           {...searchBar}
+        />
+        <SearchSuggestions
+          searchQuery={searchBar.value}
         />
         <button
           className='translate-x-1 p-2'

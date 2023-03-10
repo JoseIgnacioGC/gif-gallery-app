@@ -5,7 +5,7 @@ type Props = { scrollInTop: boolean }
 const WebLogo = ({ scrollInTop }: Props): JSX.Element => (
   <Link
     className={
-      'bg-dark-gunmetal inline-flex justify-center w-7 h-7 rounded-full ' +
+      'bg-dark-gunmetal absolute left-0 inline-flex justify-center float-left w-7 h-7 rounded-full ' +
       (scrollInTop ? 'ml-4 mt-4' : 'absolute left-0 ml-3 flex-none')
     }
     aria-label='Go to home page'
