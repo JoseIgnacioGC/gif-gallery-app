@@ -7,11 +7,8 @@ const customJestConfig = {
   preset: 'ts-jest',
   verbose: true,
   moduleDirectories: ['node_modules', '<rootDir>/'],
-  testEnvironment: 'jest-environment-jsdom'
-  // testEnvironment: 'node',
-  // testEnvironmentOptions: {
-  //   PORT: 3002
-  // }
+  testEnvironment: 'jest-environment-jsdom',
+  setupFiles: ['<rootDir>/__test__/setupEnv.js']
 }
 
 module.exports = createJestConfig(customJestConfig)

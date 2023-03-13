@@ -25,27 +25,40 @@ const GifGallery = ({
   })
 
   useEffect(() => {
-    if (isNearScreen) getMoreGifs()
-  }, [isNearScreen, getMoreGifs])
+    if (isNearScreen && gifs.length > 0) getMoreGifs()
+  }, [isNearScreen, getMoreGifs, gifs.length])
+
+  if (gifs.length === 0) {
+    return (
+      <p className='text-black dark:text-slate-200 py-2 text-center h-screen'>
+        no gifs available
+      </p>
+    )
+  }
 
   return (
     <>
-      <p className='text-black dark:text-slate-200 font-semibold text-xl py-2'>{galleryTitle}</p>
+      <p className='text-black dark:text-slate-200 font-semibold text-xl py-2'>
+        {galleryTitle}
+      </p>
       <Masonry
-        breakpointCols={2}
+        breakpointCols={{
+          default: 4,
+          1100: 3,
+          700: 2
+        }}
         className='flex gap-3'
         columnClassName='masonry-column'
       >
-        {
-          gifs.map((gifProps, index) => (
-            <Gif
-              key={index}
-              {...gifProps}
-              isPriority={index === 0 && firstImagePriority}
-            />
-          ))}
-        <div ref={lastImageGalleryItem} />
+        {gifs.map((gifProps, index) => (
+          <Gif
+            key={index}
+            {...gifProps}
+            isPriority={index === 0 && firstImagePriority}
+          />
+        ))}
       </Masonry>
+      <div ref={lastImageGalleryItem} />
     </>
   )
 }

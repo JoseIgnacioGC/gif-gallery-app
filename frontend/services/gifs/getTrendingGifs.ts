@@ -3,19 +3,10 @@ import { giphy, GifProps } from './gifApi'
 const GIFS_LIMIT = 25
 const MAX_RATING = 'r'
 
-type GetAllGifs = {
-  gifs: GifProps[]
-  error: null | {
-    status: number
-    msg: string
-    response_id: string
-  }
-}
-
-const getAllGifs = async (): Promise<GetAllGifs> => {
+const getTrendingGifs = async (): Promise<GifProps[]> => {
   const res = await giphy.trending({ limit: GIFS_LIMIT, rating: MAX_RATING })
   const { data, meta } = res
-  if (meta.msg !== 'OK') return { gifs: [], error: meta }
+  if (meta.msg !== 'OK') return []
   const gifs = data
     .map(gif => {
       const { title, id } = gif
@@ -23,7 +14,7 @@ const getAllGifs = async (): Promise<GetAllGifs> => {
       const webpUrl = webp ?? null
       return { title, id, webpUrl, url, width, height }
     })
-  return { gifs, error: null }
+  return gifs
 }
 
-export { getAllGifs }
+export { getTrendingGifs }

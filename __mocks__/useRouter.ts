@@ -2,7 +2,8 @@ jest.mock('next/router', () => ({
   useRouter: jest
     .fn()
     .mockReturnValue({
-      asPath: null
+      asPath: null,
+      query: { searchQuery: '' }
     })
 }))
 

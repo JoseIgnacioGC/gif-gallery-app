@@ -10,7 +10,6 @@ const GifInteractionButtons = ({ imgUrl, imgTitle }: Props): JSX.Element => {
   const handleCopyLink = (): void => {
     void navigator.clipboard.writeText(imgUrl)
     const { current } = copyAlert
-    console.log('hello')
     if (current === null) return undefined
     current.classList.toggle('opacity-0')
     current.classList.toggle('translate-y-60')

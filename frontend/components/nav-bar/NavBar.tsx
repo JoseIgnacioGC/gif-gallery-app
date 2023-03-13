@@ -28,19 +28,18 @@ const NavBar = ({
           : 'inline-flex flex-row w-full justify-center items-center py-3')
       }
     >
+
       <WebLogo scrollInTop={scrollInTop} />
       <h1
         className={
           scrollInTop
-            ? 'text-dark-gunmetal dark:text-slate-200 text-center -translate-y-3 font-semibold text-xl mt-12 mb-1'
-            : 'hidden'
+          ? 'text-dark-gunmetal dark:text-slate-200 text-center -translate-y-3 font-semibold text-xl mt-12 mb-1'
+          : 'hidden'
         }
       >
         GifWeb
       </h1>
-      <SearchBar
-        placeholder='search...'
-      />
+      <SearchBar placeholder='search...' />
     </nav>
   )
 }

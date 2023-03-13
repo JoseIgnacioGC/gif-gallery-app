@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { KeyboardEvent, useCallback } from 'react'
+import { KeyboardEvent, useCallback, useState } from 'react'
 import { useSessionStorage } from 'react-use-storage'
 import useField from '../../hooks/useField'
 import {
@@ -17,6 +17,7 @@ type Props = {
 const SearchBar = ({ placeholder }: Props): JSX.Element => {
   const [searchQuery, setSearchQuery] = useSessionStorage('searchQuery', '')
   const [searchBar] = useField({ type: 'search', initialValue: searchQuery })
+  const [suggestionHidden, setSuggestionHidden] = useState(false)
   const router = useRouter()
 
   const routerPush = useCallback((): void => {
@@ -37,16 +38,27 @@ const SearchBar = ({ placeholder }: Props): JSX.Element => {
     routerPush()
   }, [routerPush])
 
+  const handleFocus = useCallback((e: React.FocusEvent): void => {
+    e.type === 'focus'
+      ? setSuggestionHidden(false)
+      : setTimeout(() => {
+        setSuggestionHidden(true)
+      }, 200)
+  }, [])
+
   return (
-    <div className='relative w-fit'>
-      <div className='flex justify-center items-center w-fit bg-white dark:bg-slate-700 rounded-full mx-auto py-0 px-3'>
+    <div className='relative min-w-min'>
+      <div className='flex justify-center items-center bg-white dark:bg-slate-700 rounded-full mx-auto py-0 px-3'>
         <input
-          className='bg-transparent placeholder:text-gray-400 dark:text-slate-200 dark:placeholder:text-slate-400 focus-visible:outline-none w-60'
+          className='min-w-0 w-full bg-transparent placeholder:text-gray-400 dark:text-slate-200 dark:placeholder:text-slate-400 focus-visible:outline-none'
           onKeyUp={handleSearchByEnter}
           placeholder={placeholder}
           {...searchBar}
+          onFocus={handleFocus}
+          onBlur={handleFocus}
         />
         <SearchSuggestions
+          isHidden={suggestionHidden}
           searchQuery={searchBar.value}
         />
         <button

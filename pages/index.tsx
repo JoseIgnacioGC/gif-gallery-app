@@ -3,7 +3,7 @@ import { useSessionStorage } from 'react-use-storage'
 import HeadTitle from '../frontend/components/elements/HeadTitle'
 import GifGallery from '../frontend/components/gifs/GifGallery'
 import NavBar from '../frontend/components/nav-bar/NavBar'
-import { getAllGifs } from '../frontend/services/gifs/getAllGifs'
+import { getTrendingGifs } from '../frontend/services/gifs/getTrendingGifs'
 import { GifProps } from '../frontend/services/gifs/gifApi'
 
 // import { Inter } from '@next/font/google'
@@ -12,8 +12,7 @@ import { GifProps } from '../frontend/services/gifs/gifApi'
 type HomePageProps = { gifsWithProps: GifProps[] }
 type Props = { props: HomePageProps }
 const getServerSideProps = async (): Promise<Props> => {
-  const { gifs } = await getAllGifs()
-  const gifsWithProps = gifs
+  const gifsWithProps = await getTrendingGifs()
   return { props: { gifsWithProps } }
 }
 

@@ -7,19 +7,35 @@ import { getGifsBySearch } from '../../frontend/services/gifs/getGifsBySearch'
 import HeadTitle from '../../frontend/components/elements/HeadTitle'
 import { GetServerSidePropsContext } from 'next'
 import GifInteractionButtons from '../../frontend/components/gifs/GifInteractionButtons'
+import { toString } from '../../frontend/utils/handlePrimitiveValidators'
 
-type GifPageProps = { gifProps: GifProps, gifsWithProps: GifProps[] }
-type Props = { props: GifPageProps }
+type GifPageProps = { gifProps: GifProps | null, gifsWithProps: GifProps[] }
+type Props = { props: GifPageProps | {}, redirect?: Record<string, unknown> }
 
 const getServerSideProps = async (
   context: GetServerSidePropsContext
 ): Promise<Props> => {
-  const gifProps = await getGifById(context)
+  const gifId = toString(context.query.gifId)
+  const gifProps = await getGifById(gifId)
+  if (gifProps === null) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: '/'
+      },
+      props: {}
+    }
+  }
   const gifsWithProps = await getGifsBySearch(gifProps.title)
   return { props: { gifProps, gifsWithProps } }
 }
 
-const GifPage = ({ gifProps, gifsWithProps }: GifPageProps): JSX.Element => {
+const GifPage = ({
+  gifProps = null,
+  gifsWithProps = []
+}: GifPageProps): JSX.Element => {
+  if (gifProps === null) return <></>
+
   return (
     <>
       <HeadTitle title={gifProps.title} withSuffix />

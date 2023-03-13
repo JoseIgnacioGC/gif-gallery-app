@@ -9,7 +9,7 @@ type NearScreenOptions<T> = {
 }
 const useNearScreen = <T extends HTMLElement>({
   externalRef = null,
-  rootMargin = '400px'
+  rootMargin = '600px'
 }: NearScreenOptions<T> = {}): NearScreenValue<T> => {
   const [isNearScreen, setIsNearScreen] = useState(false)
   const fromRef = useRef<T>(null)

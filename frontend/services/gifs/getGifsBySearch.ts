@@ -11,30 +11,22 @@ const getGifsBySearch = async (
   searchQuery: string,
   { offset = DEFAULT_OFFSET }: SearchOptions = {}
 ): Promise<GifProps[]> => {
-  try {
-    const res = await giphy.search({
-      q: validateSearchQuery(searchQuery),
-      limit: GIFS_LIMIT,
-      offset,
-      rating: MAX_RATING
+  const res = await giphy.search({
+    q: validateSearchQuery(searchQuery),
+    limit: GIFS_LIMIT,
+    offset,
+    rating: MAX_RATING
+  })
+  const { data, meta } = res
+  if (meta.msg !== 'OK') return []
+  const gifsWithProps = data
+    .map(gif => {
+      const { title, id } = gif
+      const { webp, url, width, height } = gif.images.original
+      const webpUrl = webp ?? null
+      return { title, id, webpUrl, url, width, height }
     })
-    const { data } = res
-    const gifsWithProps = data
-      .map(gif => {
-        const { title, id } = gif
-        const { webp, url, width, height } = gif.images.original
-        const webpUrl = webp ?? null
-        return { title, id, webpUrl, url, width, height }
-      })
-      .filter(({ id }, index, arr) =>
-        arr.every(
-          ({ id: mapId }, mapIndex) => mapIndex === index || id !== mapId
-        )
-      )
-    return gifsWithProps
-  } catch (e) {
-    throw new Error("bruh, I don't want handle a test")
-  }
+  return gifsWithProps
 }
 
 export { getGifsBySearch }
