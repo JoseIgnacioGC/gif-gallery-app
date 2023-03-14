@@ -9,8 +9,8 @@ import { GetServerSidePropsContext } from 'next'
 import GifInteractionButtons from '../../frontend/components/gifs/GifInteractionButtons'
 import { toString } from '../../frontend/utils/handlePrimitiveValidators'
 
-type GifPageProps = { gifProps: GifProps | null, gifsWithProps: GifProps[] }
-type Props = { props: GifPageProps | {}, redirect?: Record<string, unknown> }
+type GifPageProps = { gifProps: GifProps | null; gifsWithProps: GifProps[] }
+type Props = { props: GifPageProps | {}; redirect?: Record<string, unknown> }
 
 const getServerSideProps = async (
   context: GetServerSidePropsContext

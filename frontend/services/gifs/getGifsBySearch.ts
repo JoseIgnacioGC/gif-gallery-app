@@ -19,13 +19,12 @@ const getGifsBySearch = async (
   })
   const { data, meta } = res
   if (meta.msg !== 'OK') return []
-  const gifsWithProps = data
-    .map(gif => {
-      const { title, id } = gif
-      const { webp, url, width, height } = gif.images.original
-      const webpUrl = webp ?? null
-      return { title, id, webpUrl, url, width, height }
-    })
+  const gifsWithProps = data.map(gif => {
+    const { title, id } = gif
+    const { webp, url, width, height } = gif.images.original
+    const webpUrl = webp ?? null
+    return { title, id, webpUrl, url, width, height }
+  })
   return gifsWithProps
 }
 

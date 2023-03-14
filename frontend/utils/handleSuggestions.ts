@@ -7,9 +7,7 @@ const removeLastWord = (suggestion: string, searchQuery: string): string => {
 const toTheMaximumLength = (searchQuery: string): string => {
   const { length } = searchQuery
   const maxLenghtQuery =
-    length <= 18
-      ? searchQuery
-      : `...${searchQuery.slice(length - 18, length)}`
+    length <= 18 ? searchQuery : `...${searchQuery.slice(length - 18, length)}`
   return maxLenghtQuery
 }
 

@@ -6,9 +6,6 @@ import NavBar from '../frontend/components/nav-bar/NavBar'
 import { getTrendingGifs } from '../frontend/services/gifs/getTrendingGifs'
 import { GifProps } from '../frontend/services/gifs/gifApi'
 
-// import { Inter } from '@next/font/google'
-// const inter = Inter({ subsets: ['latin'] })
-
 type HomePageProps = { gifsWithProps: GifProps[] }
 type Props = { props: HomePageProps }
 const getServerSideProps = async (): Promise<Props> => {

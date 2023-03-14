@@ -29,5 +29,5 @@ describe('No props case', () => {
 
   it('should have a navbar', expectNavbar(<Home {...emptyProps} />))
 
-  it('should\'t have trends', expectNoGalleryContent(<Home {...emptyProps} />))
+  it("should't have trends", expectNoGalleryContent(<Home {...emptyProps} />))
 })

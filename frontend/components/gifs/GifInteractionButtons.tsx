@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import { MdLink, MdDownload } from 'react-icons/md'
 import { saveAs } from 'file-saver'
 
-type Props = { imgUrl: string, imgTitle: string }
+type Props = { imgUrl: string; imgTitle: string }
 
 const GifInteractionButtons = ({ imgUrl, imgTitle }: Props): JSX.Element => {
   const copyAlert = useRef<HTMLDivElement>(null)

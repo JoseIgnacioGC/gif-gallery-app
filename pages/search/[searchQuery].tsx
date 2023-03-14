@@ -13,7 +13,7 @@ type SearchPageProps = {
 }
 type Props = {
   props: SearchPageProps | {}
-  redirect?: { permanent: boolean, destination: string }
+  redirect?: { permanent: boolean; destination: string }
 }
 
 const getServerSideProps = async ({
@@ -25,9 +25,7 @@ const getServerSideProps = async ({
   return { props: { gifsWithProps } }
 }
 
-const SearchPage = ({
-  gifsWithProps = []
-}: SearchPageProps): JSX.Element => {
+const SearchPage = ({ gifsWithProps = [] }: SearchPageProps): JSX.Element => {
   const router = useRouter()
   const { searchQuery } = router.query
   const validSearchQuery = typeof searchQuery === 'string' ? searchQuery : ''

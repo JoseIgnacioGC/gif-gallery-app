@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { replaceSpecialCharacters, urlHaveSpecialCharacters } from '../utils/handleSearchQuery'
+import {
+  replaceSpecialCharacters,
+  urlHaveSpecialCharacters
+} from '../utils/handleSearchQuery'
 
 const useRedirectToCorrectUrl = (searchQuery: string): void => {
   const router = useRouter()

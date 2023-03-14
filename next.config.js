@@ -1,17 +1,14 @@
 /** @type {import('next').NextConfig} */
-const giphyApiDomains = [
-  'media0.giphy.com',
-  'media1.giphy.com',
-  'media2.giphy.com',
-  'media3.giphy.com',
-  'media4.giphy.com'
-]
+
+const eslintDirs = ['frontend', '__test__', '__mocks__']
+const giphyApiDomains = [...Array(6)].map(
+  (_, index) => `media${index}.giphy.com`
+)
 
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: [...giphyApiDomains]
-  }
+  eslint: { dirs: eslintDirs },
+  images: { domains: giphyApiDomains }
 }
 
 module.exports = nextConfig

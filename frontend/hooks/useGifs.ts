@@ -25,11 +25,12 @@ const useGifs = (searchQuery: string, initialState: GifProps[]): UseGifs => {
     if (!loadMoreGifs) return undefined
     setIsLoading(true)
     setLoadMoreGifs(false)
-    void getGifsBySearch(searchQuery, { offset: gifs.length })
-      .then(gifsBySearch => {
+    void getGifsBySearch(searchQuery, { offset: gifs.length }).then(
+      gifsBySearch => {
         setGifs(previousGifs => [...previousGifs, ...gifsBySearch])
         setIsLoading(false)
-      })
+      }
+    )
   }, [loadMoreGifs, searchQuery, gifs.length])
 
   return { gifs, getMoreGifs, isLoading }

@@ -42,8 +42,8 @@ const SearchBar = ({ placeholder }: Props): JSX.Element => {
     e.type === 'focus'
       ? setSuggestionHidden(false)
       : setTimeout(() => {
-        setSuggestionHidden(true)
-      }, 200)
+          setSuggestionHidden(true)
+        }, 200)
   }, [])
 
   return (

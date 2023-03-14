@@ -1,6 +1,9 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSessionStorage } from 'react-use-storage'
-import { toTheMaximumLength, removeLastWord } from '../../utils/handleSuggestions'
+import {
+  toTheMaximumLength,
+  removeLastWord
+} from '../../utils/handleSuggestions'
 import {
   removeHyphens,
   replaceSpecialCharacters
@@ -8,7 +11,7 @@ import {
 import { useRouter } from 'next/router'
 import { miniSearch } from '../../services/search/miniSearch'
 
-type Props = { searchQuery: string, isHidden: boolean }
+type Props = { searchQuery: string; isHidden: boolean }
 
 const SearchSuggestions = ({ searchQuery, isHidden }: Props): JSX.Element => {
   const [, setSearchQuery] = useSessionStorage('searchQuery', '')
