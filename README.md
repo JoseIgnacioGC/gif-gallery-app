@@ -35,10 +35,15 @@ The project attempts to implement functional programming concepts such as immuta
    ```bash
    npm install
    ```
+2. Set husky
 
-2. Set `.env.local.example` variables in `.env.local`
+   ```bash
+   npm run prepare
+   ```
 
-3. Get the api key in [Giphy developers](https://developers.giphy.com/) and assign it to the env variable `NEXT_PUBLIC_GIPHY_API_KEY`
+3. Set `.env.local.example` variables in `.env.local`
+
+4. Get the api key in [Giphy developers](https://developers.giphy.com/) and assign it to the env variable `NEXT_PUBLIC_GIPHY_API_KEY`
 
 # Usage
 
