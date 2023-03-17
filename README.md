@@ -12,7 +12,12 @@ The project attempts to implement functional programming concepts such as immuta
 
 &nbsp;
 
-![demo video of the gif gallery app](https://drive.google.com/uc?id=1enW3RSGjbQogaEmCuL9NASbgDbSKS0LH 'Gif gallery app')
+<p align='center'>
+   <img
+      src='https://drive.google.com/uc?id=1JxudsHnc2e_5NBWsRzhOCRALWRBEATHm'
+      alt='demo video of the gif gallery app'
+   />
+</p>
 
 &nbsp;
 
