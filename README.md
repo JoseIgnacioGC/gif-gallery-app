@@ -31,15 +31,9 @@ The project attempts to implement functional programming concepts such as immuta
    npm install
    ```
 
-2. Set husky pre-commit hook
+2. Set `.env.local.example` variables in `.env.local`
 
-   ```bash
-   npm run husky:pre-commit
-   ```
-
-3. Set `.env.local.example` variables in `.env.local`
-
-4. Get the api key in [Giphy developers](https://developers.giphy.com/) and assign it to the env variable `NEXT_PUBLIC_GIPHY_API_KEY`
+3. Get the api key in [Giphy developers](https://developers.giphy.com/) and assign it to the env variable `NEXT_PUBLIC_GIPHY_API_KEY`
 
 # Usage
 
