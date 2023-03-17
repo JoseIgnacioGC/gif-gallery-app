@@ -8,6 +8,7 @@ import { GifProps } from '../frontend/services/gifs/gifApi'
 
 type HomePageProps = { gifsWithProps: GifProps[] }
 type Props = { props: HomePageProps }
+
 const getServerSideProps = async (): Promise<Props> => {
   const gifsWithProps = await getTrendingGifs()
   return { props: { gifsWithProps } }

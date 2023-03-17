@@ -2,14 +2,19 @@
 
 A simple gif gallery app built using the Next.js framework and the giphy api.
 
-The reason to use Next.js is for the seo benefits like server side rendering, automatic photo optimization, among others. I chose the typescript programming language, since being typed allows better scalability.
+The reason to use Next.js is for the seo benefits like server side rendering, automatic photo optimization, among others.
+
+I chose the typescript programming language, since being typed allows better scalability.
+
 The app has infinite scroll, a simple autocomplete search bar, tailwind css with simple darkmode (changes with system color), unit tests with jest and a code linter and formatter.
 
 The project attempts to implement functional programming concepts such as immutability, more declarative code, and including pure functions.
 
-![demo video of the gif gallery app](https://drive.google.com/uc?id=1VfxSpx22Y9ZgqJA7-y5HWgIQKtvioj1E "Gif gallery app")
-![demo video of the gif gallery app](https://drive.google.com/uc?id=1enW3RSGjbQogaEmCuL9NASbgDbSKS0LH "Gif gallery app")
+&nbsp;
 
+![demo video of the gif gallery app](https://drive.google.com/uc?id=1enW3RSGjbQogaEmCuL9NASbgDbSKS0LH 'Gif gallery app')
+
+&nbsp;
 
 # Getting Started
 
