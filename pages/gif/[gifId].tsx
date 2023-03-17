@@ -8,6 +8,7 @@ import HeadTitle from '../../frontend/components/elements/HeadTitle'
 import { GetServerSidePropsContext } from 'next'
 import GifInteractionButtons from '../../frontend/components/gifs/GifInteractionButtons'
 import { toString } from '../../frontend/utils/handlePrimitiveValidators'
+import { serverSideRedirectHome } from '../../frontend/utils/serverSideRedirectTo'
 
 type GifPageProps = { gifProps: GifProps | null; gifsWithProps: GifProps[] }
 type Props = { props: GifPageProps | {}; redirect?: Record<string, unknown> }
@@ -17,15 +18,7 @@ const getServerSideProps = async (
 ): Promise<Props> => {
   const gifId = toString(context.query.gifId)
   const gifProps = await getGifById(gifId)
-  if (gifProps === null) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/'
-      },
-      props: {}
-    }
-  }
+  if (gifProps === null) return serverSideRedirectHome
   const gifsWithProps = await getGifsBySearch(gifProps.title)
   return { props: { gifProps, gifsWithProps } }
 }

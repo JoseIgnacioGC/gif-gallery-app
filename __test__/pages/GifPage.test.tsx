@@ -52,17 +52,3 @@ describe('No props cases', () => {
     expect(placeholderText).not.toBeInTheDocument()
   })
 })
-
-// describe('The buttons work', () => {
-//   it('should copy link and download the gif', async () => {
-//     const user = userEvent.setup()
-//     render(<GifPage {...fakeProps} />)
-//     const copyLinkBtn = screen.getByRole('button', { name: COPY_LINK_BTN_LABEL })
-//     await user.click(copyLinkBtn)
-
-//     expect(navigator.clipboard.readText).toHaveTextContent(gifProps.webpUrl)
-
-//     const downloadGifBtn = screen.getByRole('button', { name: DOWNLOAD_BTN_LABEL })
-//     await user.click(downloadGifBtn)
-//   })
-// })
