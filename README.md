@@ -41,7 +41,7 @@ The project attempts to implement functional programming concepts such as immuta
    npm run prepare
    ```
 
-3. Set `.env.production` variables in `.env.local`
+3. Set `.env` variables in `.env.local`
 
 4. Get the api key in [Giphy developers](https://developers.giphy.com/) and assign it to the env variable `NEXT_PUBLIC_GIPHY_API_KEY`
 
