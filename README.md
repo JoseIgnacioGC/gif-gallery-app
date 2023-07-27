@@ -6,7 +6,7 @@ The reason to use Next.js is for the seo benefits like server side rendering, au
 
 I chose the typescript programming language, since being typed allows better scalability.
 
-The app has infinite scroll, a simple autocomplete search bar, tailwind css with simple darkmode (changes with system color), unit tests with jest and a code linter and formatter.
+The app has infinite scroll, a simple autocomplete search bar, tailwind css with simple darkmode (changes with system color), integration testing with jest and a code linter and formatter.
 
 The project attempts to implement functional programming concepts such as immutability, more declarative code, and including pure functions.
 
